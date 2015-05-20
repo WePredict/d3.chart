@@ -267,7 +267,18 @@ Chart.prototype.draw = function(data) {
 		}
 		this._attached[attachmentName].draw(attachmentData);
 	}
+	this.paint();
 };
+
+/**
+ * Render changes in the chart which don't involve changes to the data.
+ * This call happens once after all layers have processed a draw() request, or
+ * can be called manually to re-render the chart without data changes.
+ * 
+ * For example, you might call paint() after a responsive div has resized, to
+ * redraw the same chart at a new size.
+ */
+Chart.prototype.paint = function() {};
 
 /**
  * Function invoked with the context specified when the handler was bound (via
