@@ -468,5 +468,9 @@ Chart.extend = function(name, protoProps, staticProps) {
 	child.__super__ = parent.prototype;
 
 	Chart[name] = child;
+
+	// Set Global Chart name (DC: Modified @ 18/11/2015)
+	child.prototype.name = name;	
+	
 	return child;
 };

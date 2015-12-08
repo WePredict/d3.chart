@@ -1,6 +1,6 @@
-/*! d3.chart - v0.2.1
+/*! d3.chart - v0.2.1-wp1
  *  License: MIT
- *  Date: 2015-05-20
+ *  Date: 2015-12-08
  */
 (function(global, factory) {
 	"use strict";
@@ -756,6 +756,10 @@ Chart.extend = function(name, protoProps, staticProps) {
 	child.__super__ = parent.prototype;
 
 	Chart[name] = child;
+
+	// Set Global Chart name (DC: Modified @ 18/11/2015)
+	child.prototype.name = name;	
+	
 	return child;
 };
 

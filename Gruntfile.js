@@ -26,5 +26,6 @@ module.exports = function(grunt) {
   grunt.registerTask("test", ["test-unit", "test-build"]);
 
   grunt.registerTask("default", ["jshint", "test"]);
+
   grunt.registerTask("release", ["default", "build"]);
 };
