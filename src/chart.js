@@ -101,9 +101,10 @@ var Chart = function(selection, chartOptions) {
 	this._attached = {};
 	this._events = {};
 
-	if (chartOptions && chartOptions.transform) {
-		this.transform = chartOptions.transform;
-	}
+	// DC Modified (25/07/2019) - to remove overwriting transform.
+//	if (chartOptions && chartOptions.transform) {
+//		this.transform = chartOptions.transform;
+//	}
 
 	initCascade.call(this, this, [chartOptions]);
 };
