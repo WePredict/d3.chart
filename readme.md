@@ -48,3 +48,7 @@ After this, the project can be built by invoking Grunt from within this
 repository:
 
     $ grunt
+
+To build the compiled library, run the following command in the repository:
+
+    $ grunt release
