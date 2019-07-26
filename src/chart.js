@@ -101,10 +101,11 @@ var Chart = function(selection, chartOptions) {
 	this._attached = {};
 	this._events = {};
 
-	// DC Modified (25/07/2019) - to remove overwriting transform.
-//	if (chartOptions && chartOptions.transform) {
-//		this.transform = chartOptions.transform;
-//	}
+	// DC: Modified (25/07/2019) - remove method which was overwriting the transform
+	// chart option in JSON format (WePredict D3 v4).
+	//if (chartOptions && chartOptions.transform) {
+	//	this.transform = chartOptions.transform;
+	//}
 
 	initCascade.call(this, this, [chartOptions]);
 };
@@ -275,7 +276,7 @@ Chart.prototype.draw = function(data) {
  * Render changes in the chart which don't involve changes to the data.
  * This call happens once after all layers have processed a draw() request, or
  * can be called manually to re-render the chart without data changes.
- * 
+ *
  * For example, you might call paint() after a responsive div has resized, to
  * redraw the same chart at a new size.
  */
@@ -471,7 +472,7 @@ Chart.extend = function(name, protoProps, staticProps) {
 	Chart[name] = child;
 
 	// Set Global Chart name (DC: Modified @ 18/11/2015)
-	child.prototype.name = name;	
-	
+	child.prototype.name = name;
+
 	return child;
 };

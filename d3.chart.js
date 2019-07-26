@@ -1,6 +1,6 @@
 /*! d3.chart - v0.2.1-wp1
  *  License: MIT
- *  Date: 2015-12-08
+ *  Date: 2019-07-26
  */
 (function(global, factory) {
 	"use strict";
@@ -389,10 +389,10 @@ var Chart = function(selection, chartOptions) {
 	this._attached = {};
 	this._events = {};
 
-	// Removed overwrite ability of transform (DC: Modified @ 07/08/2018)
-	// if (chartOptions && chartOptions.transform) {
-	// 	this.transform = chartOptions.transform;
-	// }
+	// DC: Modified (25/07/2019) - to remove overwriting transform.
+//	if (chartOptions && chartOptions.transform) {
+//		this.transform = chartOptions.transform;
+//	}
 
 	initCascade.call(this, this, [chartOptions]);
 };
