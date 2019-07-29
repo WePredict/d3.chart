@@ -150,16 +150,20 @@ Layer.prototype.draw = function(data) {
 		},
 		{
 			name: "enter",
-			selection: entering,
-			method: this.insert
+            // Defer invocation of the `insert` method so that the previous
+            // `update` selection does not contain the new nodes.
+            // selection: this.insert.bind(entering)
+            selection: function() {
+                return entering = this.insert.bind(entering)();
+            }
 		},
 		{
 			name: "merge",
-			// Although the `merge` lifecycle event shares its selection object
-			// with the `update` lifecycle event, the object's contents will be
-			// modified when d3.chart invokes the user-supplied `insert` method
-			// when triggering the `enter` event.
-			selection: bound
+            // This selection will be modified when the previous selection
+            // is made.
+            selection: function() {
+                return entering.merge(bound);
+            }
 		},
 		{
 			name: "exit",
@@ -167,21 +171,19 @@ Layer.prototype.draw = function(data) {
 			// with the `update` and `merge` lifecycle events, the object's
 			// contents will be modified when d3.chart invokes
 			// `d3.selection.exit`.
-			selection: bound,
-			method: bound.exit
+			selection: bound.exit.bind(bound)
 		}
 	];
 
 	for (var i = 0, l = events.length; i < l; ++i) {
 		eventName = events[i].name;
 		selection = events[i].selection;
-		method = events[i].method;
 
 		// Some lifecycle selections modify shared state, so they must be
 		// deferred until just prior to handler invocation.
-		if (typeof method === "function") {
-			selection = method.call(selection);
-		}
+        if (typeof selection === "function") {
+            selection = selection.apply(this);
+        }
 
 		if (selection.empty()) {
 			continue;

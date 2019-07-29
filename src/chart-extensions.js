@@ -63,7 +63,7 @@ d3.selection.prototype.chart = function(chartName, options) {
 
 // Implement the zero-argument signature of `d3.selection.prototype.chart`
 // for all selection types.
-d3.selection.enter.prototype.chart = function() {
+d3.selection.prototype.enter.prototype.chart = function() {
 	return this._chart;
 };
-d3.transition.prototype.chart = d3.selection.enter.prototype.chart;
+d3.transition.prototype.chart = d3.selection.prototype.enter.prototype.chart;
