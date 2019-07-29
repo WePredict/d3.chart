@@ -1,6 +1,6 @@
 /*! d3.chart - v0.2.1-wp1
  *  License: MIT
- *  Date: 2019-07-26
+ *  Date: 2019-07-29
  */
 (function(global, factory) {
 	"use strict";
@@ -29,8 +29,8 @@ var d3cAssert = function(test, message) {
 };
 
 d3cAssert(d3, "d3.js is required");
-d3cAssert(typeof d3.version === "string" && d3.version.match(/^3/),
-	"d3.js version 3 is required");
+d3cAssert(typeof d3.version === "string" && parseInt(d3.version.slice(0,1)) >= 4,
+	"d3.js version 4 or later is required");
 
 "use strict";
 
@@ -389,10 +389,11 @@ var Chart = function(selection, chartOptions) {
 	this._attached = {};
 	this._events = {};
 
-	// DC: Modified (25/07/2019) - to remove overwriting transform.
-//	if (chartOptions && chartOptions.transform) {
-//		this.transform = chartOptions.transform;
-//	}
+	// DC: Modified (25/07/2019) - remove method which was overwriting the transform
+	// chart option in JSON format (WePredict D3 v4).
+	//if (chartOptions && chartOptions.transform) {
+	//	this.transform = chartOptions.transform;
+	//}
 
 	initCascade.call(this, this, [chartOptions]);
 };

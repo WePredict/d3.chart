@@ -11,5 +11,5 @@ var d3cAssert = function(test, message) {
 };
 
 d3cAssert(d3, "d3.js is required");
-d3cAssert(typeof d3.version === "string" && d3.version.match(/^3/),
-	"d3.js version 3 is required");
+d3cAssert(typeof d3.version === "string" && parseInt(d3.version.slice(0,1)) >= 4,
+	"d3.js version 4 or later is required");
